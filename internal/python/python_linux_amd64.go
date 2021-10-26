@@ -51957,6 +51957,7 @@ func scanner_deserialize(tls *libc.TLS, s uintptr, buffer uintptr, length uint32
 
 		var delimiter_count Size_t = Size_t(Uint8_t(*(*int8)(unsafe.Pointer(buffer + uintptr(libc.PostIncUint64(&i, 1))))))
 		(*Scanner)(unsafe.Pointer(s)).Delimiter_stack = libc.Xrealloc(tls, (*Scanner)(unsafe.Pointer(s)).Delimiter_stack, (uint64(unsafe.Sizeof(Delimiter(0))) * delimiter_count))
+		(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len = delimiter_count
 		(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_cap = delimiter_count
 		libc.Xmemcpy(tls, (*Scanner)(unsafe.Pointer(s)).Delimiter_stack, (buffer + uintptr(i)), delimiter_count)
 		i = i + (delimiter_count)
@@ -51967,7 +51968,7 @@ func scanner_deserialize(tls *libc.TLS, s uintptr, buffer uintptr, length uint32
 	}
 }
 
-func scanner_scan(tls *libc.TLS, s uintptr, lexer uintptr, valid_symbols uintptr) uint8 { /* scanner.c:150:13: */
+func scanner_scan(tls *libc.TLS, s uintptr, lexer uintptr, valid_symbols uintptr) uint8 { /* scanner.c:151:13: */
 	bp := tls.Alloc(1)
 	defer tls.Free(1)
 
@@ -52227,26 +52228,26 @@ func scanner_scan(tls *libc.TLS, s uintptr, lexer uintptr, valid_symbols uintptr
 
 // Exports
 
-func Xtree_sitter_python_external_scanner_create(tls *libc.TLS) uintptr { /* scanner.c:363:6: */
+func Xtree_sitter_python_external_scanner_create(tls *libc.TLS) uintptr { /* scanner.c:364:6: */
 	return new_scanner(tls)
 }
 
-func Xtree_sitter_python_external_scanner_scan(tls *libc.TLS, payload uintptr, lexer uintptr, valid_symbols uintptr) uint8 { /* scanner.c:367:6: */
+func Xtree_sitter_python_external_scanner_scan(tls *libc.TLS, payload uintptr, lexer uintptr, valid_symbols uintptr) uint8 { /* scanner.c:368:6: */
 	var scanner uintptr = payload
 	return scanner_scan(tls, scanner, lexer, valid_symbols)
 }
 
-func Xtree_sitter_python_external_scanner_serialize(tls *libc.TLS, payload uintptr, buffer uintptr) uint32 { /* scanner.c:373:10: */
+func Xtree_sitter_python_external_scanner_serialize(tls *libc.TLS, payload uintptr, buffer uintptr) uint32 { /* scanner.c:374:10: */
 	var scanner uintptr = payload
 	return scanner_serialize(tls, scanner, buffer)
 }
 
-func Xtree_sitter_python_external_scanner_deserialize(tls *libc.TLS, payload uintptr, buffer uintptr, length uint32) { /* scanner.c:378:6: */
+func Xtree_sitter_python_external_scanner_deserialize(tls *libc.TLS, payload uintptr, buffer uintptr, length uint32) { /* scanner.c:379:6: */
 	var scanner uintptr = payload
 	scanner_deserialize(tls, scanner, buffer, length)
 }
 
-func Xtree_sitter_python_external_scanner_destroy(tls *libc.TLS, payload uintptr) { /* scanner.c:383:6: */
+func Xtree_sitter_python_external_scanner_destroy(tls *libc.TLS, payload uintptr) { /* scanner.c:384:6: */
 	var scanner uintptr = payload
 	if (*Scanner)(unsafe.Pointer(scanner)).Delimiter_stack != (uintptr(0)) {
 		libc.Xfree(tls, (*Scanner)(unsafe.Pointer(scanner)).Delimiter_stack)
