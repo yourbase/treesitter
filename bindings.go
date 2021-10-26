@@ -9,6 +9,7 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/yourbase/treesitter/internal/lang"
 	C "github.com/yourbase/treesitter/internal/lib"
 	"modernc.org/libc"
 	"modernc.org/libc/sys/types"
@@ -41,8 +42,8 @@ func NewParser() *Parser {
 }
 
 // SetLanguage assignes Language to a parser
-func (p *Parser) SetLanguage(lang *Language) {
-	C.Xts_parser_set_language(p.tls, p.c, lang.ptr)
+func (p *Parser) SetLanguage(l *Language) {
+	C.Xts_parser_set_language(p.tls, p.c, lang.LanguagePtr(l))
 }
 
 // ReadFunc is a function to retrieve a chunk of text at a given byte offset and (row, column) position
@@ -271,41 +272,7 @@ func (t *Tree) Edit(i EditInput) {
 }
 
 // Language defines how to parse a particular programming language
-type Language struct {
-	ptr uintptr
-}
-
-// NewLanguage creates new Language from c pointer
-func NewLanguage(ptr uintptr) *Language {
-	return &Language{ptr}
-}
-
-// SymbolName returns a node type string for the given Symbol.
-func (l *Language) SymbolName(s Symbol) string {
-	tls := libc.NewTLS()
-	defer tls.Close()
-	return libc.GoString(C.Xts_language_symbol_name(tls, l.ptr, s))
-}
-
-// SymbolType returns named, anonymous, or a hidden type for a Symbol.
-func (l *Language) SymbolType(s Symbol) SymbolType {
-	tls := libc.NewTLS()
-	defer tls.Close()
-	return SymbolType(C.Xts_language_symbol_type(tls, l.ptr, s))
-}
-
-// SymbolCount returns the number of distinct field names in the language.
-func (l *Language) SymbolCount() uint32 {
-	tls := libc.NewTLS()
-	defer tls.Close()
-	return uint32(C.Xts_language_symbol_count(tls, l.ptr))
-}
-
-func (l *Language) FieldName(idx int) string {
-	tls := libc.NewTLS()
-	defer tls.Close()
-	return libc.GoString(C.Xts_language_field_name_for_id(tls, l.ptr, uint16(idx)))
-}
+type Language = lang.Language
 
 // Node represents a single node in the syntax tree
 // It tracks its start and end positions in the source code,
@@ -317,23 +284,13 @@ type Node struct {
 
 type Symbol = C.TSSymbol
 
-type SymbolType int
+type SymbolType = lang.SymbolType
 
 const (
 	SymbolTypeRegular SymbolType = iota
 	SymbolTypeAnonymous
 	SymbolTypeAuxiliary
 )
-
-var symbolTypeNames = []string{
-	"Regular",
-	"Anonymous",
-	"Auxiliary",
-}
-
-func (t SymbolType) String() string {
-	return symbolTypeNames[t]
-}
 
 // StartByte returns the node's start byte.
 func (n Node) StartByte() uint32 {
@@ -626,7 +583,7 @@ type Query struct {
 
 // NewQuery creates a query by specifying a string containing one or more patterns.
 // In case of error returns QueryError.
-func NewQuery(pattern []byte, lang *Language) (*Query, error) {
+func NewQuery(pattern []byte, l *Language) (*Query, error) {
 	tls := libc.NewTLS()
 	input := cbytes(tls, pattern)
 	defer libc.Xfree(tls, input)
@@ -637,7 +594,7 @@ func NewQuery(pattern []byte, lang *Language) (*Query, error) {
 
 	c := C.Xts_query_new(
 		tls,
-		lang.ptr,
+		lang.LanguagePtr(l),
 		input,
 		uint32(len(pattern)),
 		erroff,

@@ -53,7 +53,7 @@ ccgo \
   upstream/tree-sitter/lib/src/*.c
 
 ccgo \
-  -pkgname=lib \
+  -pkgname=python \
   -export-defines '' \
   -export-enums '' \
   -export-externs X \
@@ -65,4 +65,4 @@ ccgo \
   -I ./internal/lib \
   -I upstream/tree-sitter/lib/include \
   upstream/tree-sitter-python/src/parser.c \
-  internal/python/scanner.c
+  internal/python/patch/scanner.c
