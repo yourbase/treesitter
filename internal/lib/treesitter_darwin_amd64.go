@@ -637,6 +637,674 @@ const (
 	X_WINT_T                                    = 0
 )
 
+// Copyright (C) 1992-2021 Free Software Foundation, Inc.
+//
+// This file is part of GCC.
+//
+// GCC is free software; you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 3, or (at your option) any later
+// version.
+//
+// GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+// for more details.
+//
+// Under Section 7 of GPL version 3, you are granted additional
+// permissions described in the GCC Runtime Library Exception, version
+// 3.1, as published by the Free Software Foundation.
+//
+// You should have received a copy of the GNU General Public License and
+// a copy of the GCC Runtime Library Exception along with this program;
+// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+// <http://www.gnu.org/licenses/>.
+
+// This administrivia gets added to the beginning of limits.h
+//    if the system has its own version of limits.h.
+
+// We use _GCC_LIMITS_H_ because we want this not to match
+//    any macros that the system's limits.h uses for its own purposes.
+
+// Use "..." so that we find syslimits.h only in this same directory.
+// syslimits.h stands for the system's own limits.h file.
+//    If we can use it ok unmodified, then we install this text.
+//    If fixincludes fixes it, then the fixed version is installed
+//    instead of this text.
+
+// Copyright (c) 2000, 2004-2007, 2009 Apple Inc. All rights reserved.
+//
+// @APPLE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this
+// file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_LICENSE_HEADER_END@
+//	$NetBSD: limits.h,v 1.8 1996/10/21 05:10:50 jtc Exp $
+
+// Copyright (c) 1988, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)limits.h	8.2 (Berkeley) 1/4/94
+
+// Copyright (c) 2000-2018 Apple Inc. All rights reserved.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. The rights granted to you under the License
+// may not be used to create, or enable the creation or redistribution of,
+// unlawful or unlicensed copies of an Apple operating system, or to
+// circumvent, violate, or enable the circumvention or violation of, any
+// terms of an Apple operating system software license agreement.
+//
+// Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_END@
+// Copyright 1995 NeXT Computer, Inc. All rights reserved.
+// Copyright (c) 1991, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// This code is derived from software contributed to Berkeley by
+// Berkeley Software Design, Inc.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
+
+// This is the `system' limits.h, independent of any particular
+//  compiler.  GCC provides its own limits.h which can be found in
+//  /usr/lib/gcc, although it is not very informative.
+//  This file is public domain.
+// Copyright (c) 1988, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)limits.h	8.3 (Berkeley) 1/4/94
+
+// Copyright (c) 2000-2018 Apple Inc. All rights reserved.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. The rights granted to you under the License
+// may not be used to create, or enable the creation or redistribution of,
+// unlawful or unlicensed copies of an Apple operating system, or to
+// circumvent, violate, or enable the circumvention or violation of, any
+// terms of an Apple operating system software license agreement.
+//
+// Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_END@
+// Copyright 1995 NeXT Computer, Inc. All rights reserved.
+// Copyright (c) 1991, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// This code is derived from software contributed to Berkeley by
+// Berkeley Software Design, Inc.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
+
+// Copyright (c) 2004 Apple Computer, Inc. All rights reserved.
+//
+// @APPLE_LICENSE_HEADER_START@
+//
+// The contents of this file constitute Original Code as defined in and
+// are subject to the Apple Public Source License Version 1.1 (the
+// "License").  You may not use this file except in compliance with the
+// License.  Please obtain a copy of the License at
+// http://www.apple.com/publicsource and read it before using this file.
+//
+// This Original Code and all software distributed under the License are
+// distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT.  Please see the
+// License for the specific language governing rights and limitations
+// under the License.
+//
+// @APPLE_LICENSE_HEADER_END@
+
+// According to ANSI (section 2.2.4.2), the values below must be usable by
+// #if preprocessing directives.  Additionally, the expression must have the
+// same type as would an expression that is an object of the corresponding
+// type converted according to the integral promotions.  The subtraction for
+// INT_MIN and LONG_MIN is so the value is not unsigned; 2147483648 is an
+// unsigned int for 32-bit two's complement ANSI compilers (section 3.1.3.2).
+// These numbers work for pcc as well.  The UINT_MAX and ULONG_MAX values
+// are written as hex so that GCC will be quiet about large integer constants.
+
+// Copyright (c) 2000 Apple Computer, Inc. All rights reserved.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. The rights granted to you under the License
+// may not be used to create, or enable the creation or redistribution of,
+// unlawful or unlicensed copies of an Apple operating system, or to
+// circumvent, violate, or enable the circumvention or violation of, any
+// terms of an Apple operating system software license agreement.
+//
+// Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_END@
+//	$NetBSD: syslimits.h,v 1.15 1997/06/25 00:48:09 lukem Exp $
+
+// Copyright (c) 1988, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)syslimits.h	8.1 (Berkeley) 6/2/93
+
+// Copyright (c) 2000-2018 Apple Inc. All rights reserved.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. The rights granted to you under the License
+// may not be used to create, or enable the creation or redistribution of,
+// unlawful or unlicensed copies of an Apple operating system, or to
+// circumvent, violate, or enable the circumvention or violation of, any
+// terms of an Apple operating system software license agreement.
+//
+// Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_END@
+// Copyright 1995 NeXT Computer, Inc. All rights reserved.
+// Copyright (c) 1991, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// This code is derived from software contributed to Berkeley by
+// Berkeley Software Design, Inc.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
+
+// max bytes for an exec function
+
+// Note: CHILD_MAX *must* be less than hard_maxproc, which is set at
+// compile time; you *cannot* set it higher than the hard limit!!
+
+// = ((PRIO_MAX - PRIO_MIN) / 2) + 1
+// range: 0 - 39 [(2 * NZERO) - 1]
+// 0 is not actually used
+
+// Actually for XSI Visible
+
+// Removed in Issue 6
+
+// NZERO to be defined here. TBD. See also sys/param.h
+
+// Copyright (C) 1991-2021 Free Software Foundation, Inc.
+//
+// This file is part of GCC.
+//
+// GCC is free software; you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 3, or (at your option) any later
+// version.
+//
+// GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+// for more details.
+//
+// Under Section 7 of GPL version 3, you are granted additional
+// permissions described in the GCC Runtime Library Exception, version
+// 3.1, as published by the Free Software Foundation.
+//
+// You should have received a copy of the GNU General Public License and
+// a copy of the GCC Runtime Library Exception along with this program;
+// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+// <http://www.gnu.org/licenses/>.
+
+// Number of bits in a `char'.
+
+// Maximum length of a multibyte character.
+
+// Minimum and maximum values a `signed char' can hold.
+
+// Maximum value an `unsigned char' can hold.  (Minimum is 0).
+
+// Minimum and maximum values a `char' can hold.
+
+// Minimum and maximum values a `signed short int' can hold.
+
+// Maximum value an `unsigned short int' can hold.  (Minimum is 0).
+
+// Minimum and maximum values a `signed int' can hold.
+
+// Maximum value an `unsigned int' can hold.  (Minimum is 0).
+
+// Minimum and maximum values a `signed long int' can hold.
+//    (Same as `int').
+
+// Maximum value an `unsigned long int' can hold.  (Minimum is 0).
+
+// Minimum and maximum values a `signed long long int' can hold.
+
+// Maximum value an `unsigned long long int' can hold.  (Minimum is 0).
+
+// Minimum and maximum values a `signed long long int' can hold.
+
+// Maximum value an `unsigned long long int' can hold.  (Minimum is 0).
+
+// This administrivia gets added to the end of limits.h
+//    if the system has its own version of limits.h.
+
+// Copyright (C) 1998-2021 Free Software Foundation, Inc.
+//
+// This file is part of GCC.
+//
+// GCC is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3, or (at your option)
+// any later version.
+//
+// GCC is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// Under Section 7 of GPL version 3, you are granted additional
+// permissions described in the GCC Runtime Library Exception, version
+// 3.1, as published by the Free Software Foundation.
+//
+// You should have received a copy of the GNU General Public License and
+// a copy of the GCC Runtime Library Exception along with this program;
+// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+// <http://www.gnu.org/licenses/>.
+
+// ISO C Standard:  7.16  Boolean type and values  <stdbool.h>
+
+// Signal that all the definitions are present.
+
+//  DO NOT EDIT THIS FILE.
+//
+//     It has been auto-edited by fixincludes from:
+//
+// 	"/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h"
+//
+//     This had to be done to correct non-standard usages in the
+//     original, manufacturer supplied header file.
+
+// Copyright (c) 2000, 2002 - 2008 Apple Inc. All rights reserved.
+//
+// @APPLE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this
+// file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_LICENSE_HEADER_END@
+// -
+// Copyright (c) 1990, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)stdlib.h	8.5 (Berkeley) 5/19/95
+
+// Copyright (c) 2007-2016 by Apple Inc.. All rights reserved.
+//
+// @APPLE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this
+// file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_LICENSE_HEADER_END@
+
+// Copyright (c) 2000-2018 Apple Inc. All rights reserved.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. The rights granted to you under the License
+// may not be used to create, or enable the creation or redistribution of,
+// unlawful or unlicensed copies of an Apple operating system, or to
+// circumvent, violate, or enable the circumvention or violation of, any
+// terms of an Apple operating system software license agreement.
+//
+// Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_OSREFERENCE_LICENSE_HEADER_END@
+// Copyright 1995 NeXT Computer, Inc. All rights reserved.
+// Copyright (c) 1991, 1993
+//	The Regents of the University of California.  All rights reserved.
+//
+// This code is derived from software contributed to Berkeley by
+// Berkeley Software Design, Inc.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. All advertising materials mentioning features or use of this software
+//    must display the following acknowledgement:
+//	This product includes software developed by the University of
+//	California, Berkeley and its contributors.
+// 4. Neither the name of the University nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+//	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
+
+// Copyright (c) 2004, 2008, 2009 Apple Inc. All rights reserved.
+//
+// @APPLE_LICENSE_HEADER_START@
+//
+// This file contains Original Code and/or Modifications of Original Code
+// as defined in and that are subject to the Apple Public Source License
+// Version 2.0 (the 'License'). You may not use this file except in
+// compliance with the License. Please obtain a copy of the License at
+// http://www.opensource.apple.com/apsl/ and read it before using this
+// file.
+//
+// The Original Code and all software distributed under the License are
+// distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+// EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+// INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+// Please see the License for the specific language governing rights and
+// limitations under the License.
+//
+// @APPLE_LICENSE_HEADER_END@
+
 // Copyright (c) 2000 Apple Computer, Inc. All rights reserved.
 //
 // @APPLE_OSREFERENCE_LICENSE_HEADER_START@
@@ -796,14 +1464,17 @@ const ( /* wait.h:79:1: */
 )
 
 const ( /* time.h:153:1: */
-	X_CLOCK_REALTIME             = 0
-	X_CLOCK_MONOTONIC            = 6
+	X_CLOCK_REALTIME           = 0
+	X_CLOCK_MONOTONIC          = 6
+	X_CLOCK_PROCESS_CPUTIME_ID = 12
+	X_CLOCK_THREAD_CPUTIME_ID  = 16
+)
+
+const ( /* time.h:153:1: */
 	X_CLOCK_MONOTONIC_RAW        = 4
 	X_CLOCK_MONOTONIC_RAW_APPROX = 5
 	X_CLOCK_UPTIME_RAW           = 8
 	X_CLOCK_UPTIME_RAW_APPROX    = 9
-	X_CLOCK_PROCESS_CPUTIME_ID   = 12
-	X_CLOCK_THREAD_CPUTIME_ID    = 16
 )
 
 const ( /* api.h:116:1: */

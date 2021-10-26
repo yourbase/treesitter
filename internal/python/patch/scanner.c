@@ -137,6 +137,7 @@ static void scanner_deserialize(Scanner* s, const char *buffer, unsigned length)
 
     size_t delimiter_count = (uint8_t)buffer[i++];
     s->delimiter_stack = realloc(s->delimiter_stack, sizeof(Delimiter) * delimiter_count);
+    s->delimiter_stack_len = delimiter_count;
     s->delimiter_stack_cap = delimiter_count;
     memcpy(s->delimiter_stack, &buffer[i], delimiter_count);
     i += delimiter_count;
