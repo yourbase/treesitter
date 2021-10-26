@@ -627,6 +627,37 @@ const ( /* waitflags.h:52:1: */
 //    License along with the GNU C Library; if not, see
 //    <http://www.gnu.org/licenses/>.
 
+// Copyright (C) 1991-2018 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <http://www.gnu.org/licenses/>.
+
+// Definitions for byte order, according to significance of bytes,
+//    from low addresses to high addresses.  The value is what you get by
+//    putting '4' in the most significant byte, '3' in the second most
+//    significant byte, '2' in the second least significant byte, and '1'
+//    in the least significant byte, and then writing down one digit for
+//    each byte, starting with the byte at the lowest address at the left,
+//    and proceeding to the byte with the highest address at the right.
+
+// This file defines `__BYTE_ORDER' for the particular machine.
+// i386/x86_64 are little-endian.
+
+// Some machines may need to use a different endianness for floating point
+//    values.
+
 const ( /* wctype-wchar.h:56:1: */
 	X__ISwupper  = 0  // UPPERCASE.
 	X__ISwlower  = 1  // lowercase.
