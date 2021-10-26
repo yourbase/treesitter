@@ -86,11 +86,12 @@ static Scanner* new_scanner() {
   s->delimiter_stack_len = 0;
   s->delimiter_stack_cap = 0;
   scanner_deserialize(s, NULL, 0);
+  return s;
 }
 
 static void scanner_push_indent_length(Scanner* s, uint16_t n) {
   s->indent_length_stack_len++;
-  if (s->indent_length_stack_len < s->indent_length_stack_cap) {
+  if (s->indent_length_stack_len > s->indent_length_stack_cap) {
     s->indent_length_stack = realloc(s->indent_length_stack, sizeof(uint16_t) * s->indent_length_stack_len);
     s->indent_length_stack_cap = s->indent_length_stack_len;
   }
@@ -99,8 +100,8 @@ static void scanner_push_indent_length(Scanner* s, uint16_t n) {
 
 static void scanner_push_delimiter(Scanner* s, Delimiter d) {
   s->delimiter_stack_len++;
-  if (s->delimiter_stack_len < s->delimiter_stack_cap) {
-    s->delimiter_stack = realloc(s->delimiter_stack, sizeof(uint16_t) * s->delimiter_stack_len);
+  if (s->delimiter_stack_len > s->delimiter_stack_cap) {
+    s->delimiter_stack = realloc(s->delimiter_stack, sizeof(Delimiter) * s->delimiter_stack_len);
     s->delimiter_stack_cap = s->delimiter_stack_len;
   }
   s->delimiter_stack[s->delimiter_stack_len - 1] = d;

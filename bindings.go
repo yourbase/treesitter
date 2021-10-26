@@ -71,8 +71,7 @@ func (p *Parser) Parse(oldTree *Tree, content []byte) *Tree {
 		BaseTree = oldTree.c
 	}
 
-	//input := libc.CBytes(content)
-	input := uintptr(0)
+	input := cbytes(p.tls, content)
 	BaseTree = C.Xts_parser_parse_string(p.tls, p.c, BaseTree, input, uint32(len(content)))
 	libc.Xfree(p.tls, input)
 
