@@ -2,13 +2,21 @@
 
 set -euo pipefail
 
-mytmpdir=$(mktemp -d 2>/dev/null || mktemp -d -t 'yourbase-treesitter')
-trap 'rm -rf "$mytmpdir"' EXIT
+ensure_upstream() {
+  local dest="upstream/$1"
+  local url="$2"
+  local rev="$3"
 
-git clone https://github.com/tree-sitter/tree-sitter.git "$mytmpdir/tree-sitter"
-git -C "$mytmpdir/tree-sitter" checkout --quiet v0.20.0
-git clone https://github.com/tree-sitter/tree-sitter-python.git "$mytmpdir/tree-sitter-python"
-git -C "$mytmpdir/tree-sitter-python" checkout --quiet v0.19.0
+  if [[ -d "$dest" ]]; then
+    git -C "$dest" fetch
+  else
+    git clone "$url" "$dest"
+  fi
+  git -C "$dest" checkout --force --quiet "$rev"
+}
+
+ensure_upstream tree-sitter https://github.com/tree-sitter/tree-sitter.git v0.20.0
+ensure_upstream tree-sitter-python https://github.com/tree-sitter/tree-sitter-python.git v0.19.0
 
 go install modernc.org/ccgo/v3@v3.12.45
 
@@ -23,9 +31,9 @@ ccgo \
   -export-typedefs '' \
   -trace-translation-units \
   -o "internal/lib/treesitter_$(go env GOOS)_$(go env GOARCH).go" \
-  -I "$mytmpdir/tree-sitter/lib/src" \
-  -I "$mytmpdir/tree-sitter/lib/include" \
-  "$mytmpdir"/tree-sitter/lib/src/*.c
+  -I upstream/tree-sitter/lib/src \
+  -I upstream/tree-sitter/lib/include \
+  upstream/tree-sitter/lib/src/*.c
 
 ccgo \
   -pkgname=lib \
@@ -38,6 +46,6 @@ ccgo \
   -trace-translation-units \
   -o "internal/python/python_$(go env GOOS)_$(go env GOARCH).go" \
   -I ./internal/lib \
-  -I "$mytmpdir/tree-sitter/lib/include" \
-  "$mytmpdir/tree-sitter-python/src/parser.c" \
+  -I upstream/tree-sitter/lib/include \
+  upstream/tree-sitter-python/src/parser.c \
   internal/python/scanner.c
