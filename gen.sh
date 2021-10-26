@@ -20,6 +20,23 @@ ensure_upstream tree-sitter-python https://github.com/tree-sitter/tree-sitter-py
 
 go install modernc.org/ccgo/v3@v3.12.45
 
+# Verify that gcc isn't secretly clang. This is a problem on macOS.
+CC="${CC:-gcc}"
+CCGO_CPP="${CCGO_CPP:-cpp}"
+if "$CC" --version 2> /dev/null | grep clang &> /dev/null || \
+   "$CCGO_CPP" --version 2> /dev/null | grep clang &> /dev/null; then
+  echo "$CC and/or $CCGO_CPP are actually clang." 1>&2
+  echo "Set CC to a gcc compiler and CCGO_CPP to a gcc preprocessor." 1>&2
+  echo 1>&2
+  echo "On macOS:" 1>&2
+  echo 'brew install gcc && '\\ 1>&2
+  # shellcheck disable=SC2016
+  echo 'export CC="$(which gcc-11)" && '\\ 1>&2
+  # shellcheck disable=SC2016
+  echo 'export CCGO_CPP="$(which cpp-11)"' 1>&2
+  exit 1
+fi
+
 mkdir -p internal/lib
 ccgo \
   -pkgname=lib \
