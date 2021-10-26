@@ -6,9 +6,9 @@ mytmpdir=$(mktemp -d 2>/dev/null || mktemp -d -t 'yourbase-treesitter')
 trap 'rm -rf "$mytmpdir"' EXIT
 
 git clone https://github.com/tree-sitter/tree-sitter.git "$mytmpdir/tree-sitter"
-git -C "$mytmpdir/tree-sitter" checkout v0.20.0
+git -C "$mytmpdir/tree-sitter" checkout --quiet v0.20.0
 git clone https://github.com/tree-sitter/tree-sitter-python.git "$mytmpdir/tree-sitter-python"
-git -C "$mytmpdir/tree-sitter-python" checkout v0.19.0
+git -C "$mytmpdir/tree-sitter-python" checkout --quiet v0.19.0
 
 go install modernc.org/ccgo/v3@v3.12.45
 
