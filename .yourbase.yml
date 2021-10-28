@@ -1,0 +1,29 @@
+# YourBase build configuration
+# See https://docs.yourbase.io/ for reference.
+
+dependencies:
+  build:
+    - go:1.17.2
+
+build_targets:
+  - name: default
+    commands:
+      - go test ./...
+
+  - name: gen
+    commands:
+      - bash gen.sh
+
+  - name: gen_linux
+    container:
+      image: yourbase/yb_ubuntu:18.04
+    commands:
+      - bash gen.sh
+
+# This section configures which targets get built on CI.
+ci:
+  builds:
+    - name: default
+      build_target: default
+      # If you only want certain events, uncomment the following line.
+      # when: branch IS 'main' OR action IS 'pull_request'
