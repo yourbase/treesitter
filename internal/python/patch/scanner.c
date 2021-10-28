@@ -76,19 +76,6 @@ typedef struct Scanner {
   size_t delimiter_stack_cap;
 } Scanner;
 
-static Scanner* new_scanner() {
-  assert(sizeof(Delimiter) == sizeof(char));
-  Scanner* s = malloc(sizeof(Scanner));
-  s->indent_length_stack = NULL;
-  s->indent_length_stack_len = 0;
-  s->indent_length_stack_cap = 0;
-  s->delimiter_stack = NULL;
-  s->delimiter_stack_len = 0;
-  s->delimiter_stack_cap = 0;
-  scanner_deserialize(s, NULL, 0);
-  return s;
-}
-
 static void scanner_push_indent_length(Scanner* s, uint16_t n) {
   s->indent_length_stack_len++;
   if (s->indent_length_stack_len > s->indent_length_stack_cap) {
@@ -146,6 +133,19 @@ static void scanner_deserialize(Scanner* s, const char *buffer, unsigned length)
       scanner_push_indent_length(s, buffer[i]);
     }
   }
+}
+
+static Scanner* new_scanner() {
+  assert(sizeof(Delimiter) == sizeof(char));
+  Scanner* s = malloc(sizeof(Scanner));
+  s->indent_length_stack = NULL;
+  s->indent_length_stack_len = 0;
+  s->indent_length_stack_cap = 0;
+  s->delimiter_stack = NULL;
+  s->delimiter_stack_len = 0;
+  s->delimiter_stack_cap = 0;
+  scanner_deserialize(s, NULL, 0);
+  return s;
 }
 
 static bool scanner_scan(Scanner* s, TSLexer *lexer, const bool *valid_symbols) {
