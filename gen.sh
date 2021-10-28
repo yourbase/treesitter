@@ -16,6 +16,7 @@ ensure_upstream() {
 }
 
 ensure_upstream tree-sitter https://github.com/tree-sitter/tree-sitter.git v0.20.0
+ensure_upstream tree-sitter-json https://github.com/tree-sitter/tree-sitter-json.git v0.19.0
 ensure_upstream tree-sitter-python https://github.com/tree-sitter/tree-sitter-python.git v0.19.0
 
 go install modernc.org/ccgo/v3@v3.12.48
@@ -52,17 +53,28 @@ ccgo \
   -I upstream/tree-sitter/lib/include \
   upstream/tree-sitter/lib/src/*.c
 
-ccgo \
-  -pkgname=python \
-  -export-defines '' \
-  -export-enums '' \
-  -export-externs X \
-  -export-structs S \
-  -export-fields '' \
-  -export-typedefs '' \
-  -trace-translation-units \
-  -o "internal/python/python_$(go env GOOS)_$(go env GOARCH).go" \
-  -I ./internal/lib \
-  -I upstream/tree-sitter/lib/include \
+gen_parser() {
+  local name
+  name="$1"
+  shift
+  mkdir -p "internal/$name"
+  ccgo \
+    -pkgname="$name" \
+    -export-defines '' \
+    -export-enums '' \
+    -export-externs X \
+    -export-structs S \
+    -export-fields '' \
+    -export-typedefs '' \
+    -trace-translation-units \
+    -o "internal/$name/${name}_$(go env GOOS)_$(go env GOARCH).go" \
+    -I ./internal/lib \
+    -I upstream/tree-sitter/lib/include \
+    "$@"
+}
+
+gen_parser json \
+    upstream/tree-sitter-json/src/parser.c
+gen_parser python \
   upstream/tree-sitter-python/src/parser.c \
   internal/python/patch/scanner.c
