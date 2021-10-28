@@ -19,11 +19,3 @@ build_targets:
       image: yourbase/yb_ubuntu:18.04
     commands:
       - bash gen.sh
-
-# This section configures which targets get built on CI.
-ci:
-  builds:
-    - name: default
-      build_target: default
-      # If you only want certain events, uncomment the following line.
-      # when: branch IS 'main' OR action IS 'pull_request'
