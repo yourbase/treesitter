@@ -300,7 +300,7 @@ static bool scanner_scan(Scanner* s, TSLexer *lexer, const bool *valid_symbols) 
   }
 
   if (first_comment_indent_length == -1 && valid_symbols[STRING_START]) {
-    Delimiter delimiter;
+    Delimiter delimiter = 0;
 
     bool has_flags = false;
     while (lexer->lookahead) {

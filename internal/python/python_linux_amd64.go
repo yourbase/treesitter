@@ -52151,7 +52151,7 @@ func scanner_scan(tls *libc.TLS, s uintptr, lexer uintptr, valid_symbols uintptr
 	}
 
 	if (first_comment_indent_length == -1) && (*(*uint8)(unsafe.Pointer(valid_symbols + 3)) != 0) {
-		// var delimiter Delimiter at bp, 1
+		*(*Delimiter)(unsafe.Pointer(bp /* delimiter */)) = Delimiter(0)
 
 		var has_flags uint8 = uint8(False)
 		for (*TSLexer)(unsafe.Pointer(lexer)).Lookahead != 0 {
