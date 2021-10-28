@@ -18,7 +18,7 @@ ensure_upstream() {
 ensure_upstream tree-sitter https://github.com/tree-sitter/tree-sitter.git v0.20.0
 ensure_upstream tree-sitter-python https://github.com/tree-sitter/tree-sitter-python.git v0.19.0
 
-go install modernc.org/ccgo/v3@v3.12.45
+go install modernc.org/ccgo/v3@v3.12.48
 
 # Verify that gcc isn't secretly clang. This is a problem on macOS.
 CC="${CC:-gcc}"

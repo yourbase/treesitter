@@ -57396,25 +57396,7 @@ type SScanner = struct {
 
 type Scanner = SScanner /* scanner.c:77:3 */
 
-func new_scanner(tls *libc.TLS) uintptr { /* scanner.c:79:15: */
-	if libc.X__builtin_expect(tls, libc.BoolInt64(!(uint64(unsafe.Sizeof(Delimiter(0))) == uint64(unsafe.Sizeof(int8(0))))), int64(0)) != 0 {
-		libc.X__assert_rtn(tls, uintptr(unsafe.Pointer(&__func__1)), ts+2712 /* "internal/python/..." */, 80, ts+2774 /* "sizeof(Delimiter..." */)
-	} else {
-	}
-	var s uintptr = libc.Xmalloc(tls, uint64(unsafe.Sizeof(Scanner{})))
-	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack = uintptr(0)
-	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack_len = uint64(0)
-	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack_cap = uint64(0)
-	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack = uintptr(0)
-	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len = uint64(0)
-	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_cap = uint64(0)
-	scanner_deserialize(tls, s, uintptr(0), uint32(0))
-	return s
-}
-
-var __func__1 = *(*[12]int8)(unsafe.Pointer(ts + 2808 /* "new_scanner" */)) /* scanner.c:79:31 */
-
-func scanner_push_indent_length(tls *libc.TLS, s uintptr, n Uint16_t) { /* scanner.c:92:13: */
+func scanner_push_indent_length(tls *libc.TLS, s uintptr, n Uint16_t) { /* scanner.c:79:13: */
 	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack_len++
 	if (*Scanner)(unsafe.Pointer(s)).Indent_length_stack_len > (*Scanner)(unsafe.Pointer(s)).Indent_length_stack_cap {
 		(*Scanner)(unsafe.Pointer(s)).Indent_length_stack = libc.Xrealloc(tls, (*Scanner)(unsafe.Pointer(s)).Indent_length_stack, (uint64(unsafe.Sizeof(Uint16_t(0))) * (*Scanner)(unsafe.Pointer(s)).Indent_length_stack_len))
@@ -57423,7 +57405,7 @@ func scanner_push_indent_length(tls *libc.TLS, s uintptr, n Uint16_t) { /* scann
 	*(*Uint16_t)(unsafe.Pointer((*Scanner)(unsafe.Pointer(s)).Indent_length_stack + uintptr(((*Scanner)(unsafe.Pointer(s)).Indent_length_stack_len-uint64(1)))*2)) = n
 }
 
-func scanner_push_delimiter(tls *libc.TLS, s uintptr, d Delimiter) { /* scanner.c:101:13: */
+func scanner_push_delimiter(tls *libc.TLS, s uintptr, d Delimiter) { /* scanner.c:88:13: */
 	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len++
 	if (*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len > (*Scanner)(unsafe.Pointer(s)).Delimiter_stack_cap {
 		(*Scanner)(unsafe.Pointer(s)).Delimiter_stack = libc.Xrealloc(tls, (*Scanner)(unsafe.Pointer(s)).Delimiter_stack, (uint64(unsafe.Sizeof(Delimiter(0))) * (*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len))
@@ -57432,7 +57414,7 @@ func scanner_push_delimiter(tls *libc.TLS, s uintptr, d Delimiter) { /* scanner.
 	*(*Delimiter)(unsafe.Pointer((*Scanner)(unsafe.Pointer(s)).Delimiter_stack + uintptr(((*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len - uint64(1))))) = d
 }
 
-func scanner_serialize(tls *libc.TLS, s uintptr, buffer uintptr) uint32 { /* scanner.c:110:17: */
+func scanner_serialize(tls *libc.TLS, s uintptr, buffer uintptr) uint32 { /* scanner.c:97:17: */
 	var i Size_t = uint64(0)
 
 	var stack_size Size_t = (*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len
@@ -57454,7 +57436,7 @@ func scanner_serialize(tls *libc.TLS, s uintptr, buffer uintptr) uint32 { /* sca
 	return uint32(i)
 }
 
-func scanner_deserialize(tls *libc.TLS, s uintptr, buffer uintptr, length uint32) { /* scanner.c:130:13: */
+func scanner_deserialize(tls *libc.TLS, s uintptr, buffer uintptr, length uint32) { /* scanner.c:117:13: */
 	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len = uint64(0)
 	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack_len = uint64(0)
 	scanner_push_indent_length(tls, s, uint16(0))
@@ -57474,6 +57456,24 @@ func scanner_deserialize(tls *libc.TLS, s uintptr, buffer uintptr, length uint32
 		}
 	}
 }
+
+func new_scanner(tls *libc.TLS) uintptr { /* scanner.c:138:15: */
+	if libc.X__builtin_expect(tls, libc.BoolInt64(!(uint64(unsafe.Sizeof(Delimiter(0))) == uint64(unsafe.Sizeof(int8(0))))), int64(0)) != 0 {
+		libc.X__assert_rtn(tls, uintptr(unsafe.Pointer(&__func__1)), ts+2712 /* "internal/python/..." */, 139, ts+2774 /* "sizeof(Delimiter..." */)
+	} else {
+	}
+	var s uintptr = libc.Xmalloc(tls, uint64(unsafe.Sizeof(Scanner{})))
+	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack = uintptr(0)
+	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack_len = uint64(0)
+	(*Scanner)(unsafe.Pointer(s)).Indent_length_stack_cap = uint64(0)
+	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack = uintptr(0)
+	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_len = uint64(0)
+	(*Scanner)(unsafe.Pointer(s)).Delimiter_stack_cap = uint64(0)
+	scanner_deserialize(tls, s, uintptr(0), uint32(0))
+	return s
+}
+
+var __func__1 = *(*[12]int8)(unsafe.Pointer(ts + 2808 /* "new_scanner" */)) /* scanner.c:138:31 */
 
 func scanner_scan(tls *libc.TLS, s uintptr, lexer uintptr, valid_symbols uintptr) uint8 { /* scanner.c:151:13: */
 	bp := tls.Alloc(1)
