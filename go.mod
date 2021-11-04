@@ -2,7 +2,7 @@ module github.com/yourbase/treesitter
 
 go 1.17
 
-require modernc.org/libc v1.11.46
+require modernc.org/libc v1.11.50
 
 require (
 	github.com/google/uuid v1.3.0 // indirect
